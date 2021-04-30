@@ -1,0 +1,6 @@
+# server1.yml
+---
+apps:
+  - apache2
+  - php
+  - mariadb-server

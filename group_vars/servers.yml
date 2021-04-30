@@ -1,0 +1,5 @@
+# servers.yml
+---
+apps:
+  - apache2
+  - php

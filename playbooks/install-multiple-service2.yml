@@ -1,0 +1,18 @@
+# install-services.yml
+
+---
+  - hosts: servers
+    become: true
+    vars:
+        apps:
+          app1:
+            name: apache2
+            description: appache service
+          app2:
+            name: mariadb-server
+            description: Maria Db service
+    tasks:
+      - name: Installing apache
+        apt: name={{ apps['app1']['name'] }} state=present update_cache=yes
+      - name: Ensure apache starts
+        service: name={{ apps['app1']['name'] }} state=started enabled=yes

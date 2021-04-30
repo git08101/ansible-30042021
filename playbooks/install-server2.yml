@@ -1,0 +1,10 @@
+# install-services2.yml
+
+---
+  - hosts: server1
+    become: true
+    tasks:
+      - name: Installing services
+        apt: name={{ apps }} state=present update_cache=yes
+      - name: Ensure apache starts
+        service: name={{ apps[0] }} state=started enabled=yes

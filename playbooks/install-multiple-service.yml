@@ -1,0 +1,14 @@
+# install-services2.yml
+
+---
+  - hosts: servers
+    become: true
+    vars:
+        apps:
+          - mariadb-server
+          - apache2
+    tasks:
+      - name: Installing services
+        apt: name={{ apps }} state=present update_cache=yes
+      - name: Ensure apache starts
+        service: name={{ apps[1] }} state=started enabled=yes

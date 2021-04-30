@@ -1,0 +1,16 @@
+#install-service.yml
+---
+
+- hosts: servers
+  vars:
+    app1: apache2
+    status: false
+  tasks:
+    - name: Install Apache
+      apt: name={{ app1 }} state=present update_cache=yes
+      when: status
+    - name: Apache started
+      service:
+        name: "{{ app1 }}"
+        state: started
+      when: status
